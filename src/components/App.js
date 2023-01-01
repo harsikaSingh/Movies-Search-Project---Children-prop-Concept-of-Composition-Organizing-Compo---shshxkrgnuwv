@@ -1,29 +1,36 @@
-import React, { useContext, useState } from 'react';
-import { ThemeContext } from './ThemeProvider';
+import React, { useState } from "react";
+import "../styles/App.css";
+import { movies } from "../utils/movieList";
 
-const ThemeToggleButton = () =>{
-    
-    const [toggle,setToggle] = useState('Switch to dark theme');
-    //const [theme1,setTheme1] = useState('light');
+const App = () => {
+    const [inputValue, setInputValue] = useState("");
+    const [results, setResult] = useState(null);
 
-    const {theme,setTheme} = useContext(ThemeContext);
-    // console.log(theme);
+    function handleClick(e) {}
 
-    let global = () =>{
+    function handleChange(e) {}
 
-        if(toggle === 'Switch to dark theme'){
-            setTheme('dark')
-            setToggle('Switch to light theme');
-        }else{
-            setTheme('light');
-            setToggle('Switch to dark theme');
-        }
-    }
     return (
-       <>
-       <button className={`btn btn-${theme} txt-${theme}`} id='global-theme-toggler' onClick={global}>{toggle}</button>
-       </>
-    )
+        <div id="main">
+            <form id="form">
+                <input
+                    type="text"
+                    onChange={handleChange}
+                    value={inputValue}
+                    id="movie-input"
+                ></input>
+                <button id="button" onClick={handleClick}>
+                    Search
+                </button>
+            </form>
+            <div id="result">
+                {results &&
+                    results.map((movie) => (
+                        <div className="movie">{movie}</div>
+                    ))}
+            </div>
+        </div>
+    );
+};
 
-}
-export {ThemeToggleButton}
+export default App;
